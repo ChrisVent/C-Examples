@@ -21,35 +21,40 @@ int WordCount(char *Oracion,int *Cont){
 	return temp;
 }
 
-void SeparateWord(char *string, const char *delim){
-	char *tmp;
-	int num = 0;
-	char *str = (char*)malloc((strlen(string)+1)*sizeof(char));
-	strcpy(str,string);
-	tmp = strtok(str,delim);
-	if (tmp == NULL){
-		printf("[!] Error separando string!\n");
-		exit(1);
-	}
-	num++;
-	printf("[*] Parabra -> [%s] \n",tmp);
-	char *str2 = (char*)malloc((strlen(string)+1)*sizeof(char));
-	strcpy(str2,string);
-	unsigned int i,j;
-	int esp = 0;
-	for(i=0;i<strlen(str2) && esp == 0;i++){
-		if(string[i] == ' '){
-			int k = i+1;
-			for(j=0;j<(strlen(str2)-strlen(tmp));j++){
-				str2[j] = string[k];
-				k++;
-			}
-			esp++;
+char* SeparateWord(char *string, const char *delim, int letras,int cont=1){
+	if(letras > 0){
+		char *tmp;
+		int num = 0;
+		char *str = (char*)malloc((strlen(string)+1)*sizeof(char));
+		strcpy(str,string);
+		tmp = strtok(str,delim);
+		if (tmp == NULL){
+			printf("[!] Error separando string!\n");
+			exit(1);
 		}
+		num++;
+		printf("[*] Palabra[%i] -> [%s] \n",cont,tmp);
+		char *str2 = (char*)malloc((strlen(string)+1)*sizeof(char));
+		strcpy(str2,string);
+		unsigned int i,j;
+		int esp = 0;
+		for(i=0;i<strlen(str2) && esp == 0;i++){
+			if(string[i] == ' '){
+				int k = i+1;
+				for(j=0;j<(strlen(str2)-strlen(tmp));j++){
+					str2[j] = string[k];
+					k++;
+				}
+				esp++;
+			}
+		}
+		strcpy(string,str2);
+		cont += 1;
+		return SeparateWord(string,delim,letras-1,cont);
 	}
-	strcpy(string,str2);
-	free(str);
-	free(str2);
+	else{
+		return string;
+	}
 }
 int main(int args, char *argv[]){
 	char Aux[255];
@@ -63,10 +68,7 @@ int main(int args, char *argv[]){
 	letras = strlen(Oracion);
 	printf("[*] Texto:\t\"%s\"\n[*] Caracteres:\t%d\n",Oracion,letras);
 	int letraas = WordCount(Oracion,&letras);
-	int i = 0;
-	while(i < letraas){
-		SeparateWord(Oracion," ");
-		i++;
-	}
+	printf("[*] Palabras: %i\n",letraas);
+	SeparateWord(Oracion," ",letraas);
 	free(Oracion);
 }
