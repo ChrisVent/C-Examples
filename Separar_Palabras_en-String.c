@@ -11,14 +11,14 @@ void cambio(char *aux){
 	}
 }
 
-void WordCount(char *Oracion,int *Cont){
+int WordCount(char *Oracion,int *Cont){
 	int i,temp=1;
 	for(i=0;i<*Cont;i++){
 		if(Oracion[i] == ' '){
 			temp++;
 		}
 	}
-	printf("\n[*] N^ de Palabras: %i \n",temp);
+	return temp;
 }
 
 void SeparateWord(char *string, const char *delim){
@@ -32,7 +32,7 @@ void SeparateWord(char *string, const char *delim){
 		exit(1);
 	}
 	num++;
-	printf("Primera parabra -> [%s] \n",tmp);
+	printf("[*] Parabra -> [%s] \n",tmp);
 	char *str2 = (char*)malloc((strlen(string)+1)*sizeof(char));
 	strcpy(str2,string);
 	unsigned int i,j;
@@ -47,9 +47,7 @@ void SeparateWord(char *string, const char *delim){
 			esp++;
 		}
 	}
-	printf("Recorte: %s\n",str2);
 	strcpy(string,str2);
-	printf("Ahora string es: %s\n",string);
 	free(str);
 	free(str2);
 }
@@ -63,10 +61,10 @@ int main(int args, char *argv[]){
 	strcpy(Oracion,Aux);
 	fflush(stdin);
 	letras = strlen(Oracion);
-	printf("[*] Texto:\t\"%s\"\n[*] Caracteres:\t%d",Oracion,letras);
-	WordCount(Oracion,&letras);
+	printf("[*] Texto:\t\"%s\"\n[*] Caracteres:\t%d\n",Oracion,letras);
+	int letraas = WordCount(Oracion,&letras);
 	int i = 0;
-	while(i < 3){
+	while(i < letraas){
 		SeparateWord(Oracion," ");
 		i++;
 	}
