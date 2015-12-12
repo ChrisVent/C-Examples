@@ -1,6 +1,29 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+
+void cambio(char *aux);
+int WordCount(char *Oracion);
+char* SeparateWord(char *string, const char *delim, int letras,int cont=1);
+
+int main(int args, char *argv[]){
+	char Aux[255];
+	printf("[+] Escribe el texto (255 Carateres max.): ");
+	fgets(Aux,255,stdin);
+	cambio(Aux);
+	int letras = strlen(Aux);
+	char *Oracion = (char*)malloc(letras*sizeof(char));
+	strcpy(Oracion,Aux);
+	fflush(stdin);
+	letras = strlen(Oracion);
+	printf("[*] Texto:\t\"%s\"\n[*] Caracteres:\t%d\n",Oracion,letras);
+	int letraas = WordCount(Oracion);
+	printf("[*] Palabras: %i\n",letraas);
+	fflush(stdin);
+	SeparateWord(Oracion," ",letraas);
+	free(Oracion);
+}
+
 void cambio(char *aux){
 	int i,temp;
 	for(i=0;i<100 && temp == 0;i++){
@@ -56,21 +79,4 @@ char* SeparateWord(char *string, const char *delim, int letras,int cont=1){
 	else{
 		return string;
 	}
-}
-int main(int args, char *argv[]){
-	char Aux[255];
-	printf("[+] Escribe el texto (255 Carateres max.): ");
-	fgets(Aux,255,stdin);
-	cambio(Aux);
-	int letras = strlen(Aux);
-	char *Oracion = (char*)malloc(letras*sizeof(char));
-	strcpy(Oracion,Aux);
-	fflush(stdin);
-	letras = strlen(Oracion);
-	printf("[*] Texto:\t\"%s\"\n[*] Caracteres:\t%d\n",Oracion,letras);
-	int letraas = WordCount(Oracion);
-	printf("[*] Palabras: %i\n",letraas);
-	fflush(stdin);
-	SeparateWord(Oracion," ",letraas);
-	free(Oracion);
 }
