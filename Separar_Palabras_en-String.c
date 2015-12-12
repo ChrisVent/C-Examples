@@ -69,11 +69,10 @@ int main(int args, char *argv[]){
 	char *Oracion = (char*)malloc(letras*sizeof(char));
 	strcpy(Oracion,Aux);
 	fflush(stdin);
-	letras = strlen(Oracion);
 	printf("[*] Texto:\t\"%s\"\n[*] Caracteres:\t%d\n",Oracion,letras);
-	int letraas = WordCount(Oracion);
-	printf("[*] Palabras: %i\n",letraas);
+	int palabras = WordCount(Oracion);
+	printf("[*] Palabras: %i\n",palabras);
 	fflush(stdin);
-	SeparateWord(Oracion," ",letraas);
+	SeparateWord(Oracion," ",palabras);
 	free(Oracion);
 }
