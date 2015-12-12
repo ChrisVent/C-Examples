@@ -11,9 +11,9 @@ void cambio(char *aux){
 	}
 }
 
-int WordCount(char *Oracion,int *Cont){
-	int i,temp=1;
-	for(i=0;i<*Cont;i++){
+int WordCount(char *Oracion){
+	int i,temp=1,letras = strlen(Oracion);
+	for(i=0;i<letras;i++){
 		if(Oracion[i] == ' '){
 			temp++;
 		}
@@ -22,6 +22,7 @@ int WordCount(char *Oracion,int *Cont){
 }
 
 char* SeparateWord(char *string, const char *delim, int letras,int cont=1){
+	fflush(stdin);
 	if(letras > 0){
 		char *tmp;
 		int num = 0;
@@ -67,8 +68,9 @@ int main(int args, char *argv[]){
 	fflush(stdin);
 	letras = strlen(Oracion);
 	printf("[*] Texto:\t\"%s\"\n[*] Caracteres:\t%d\n",Oracion,letras);
-	int letraas = WordCount(Oracion,&letras);
+	int letraas = WordCount(Oracion);
 	printf("[*] Palabras: %i\n",letraas);
+	fflush(stdin);
 	SeparateWord(Oracion," ",letraas);
 	free(Oracion);
 }
