@@ -4,8 +4,8 @@
 
 
 void cambio(char *aux){
-	int i,temp;
-	for(i=0;i<100 && temp == 0;i++){
+	unsigned int i,temp;
+	for(i=0;i<= strlen(aux) && temp == 0;i++){
 		if(aux[i] == '\n'){
 			aux[i] = '\0';
 			temp = 1;
@@ -24,7 +24,7 @@ int WordCount(char *Oracion){
 }
 
 char* SeparateWord(char *string, const char *delim,char **Words,int palabras,int cont=1){
-	fflush(stdin);
+	setbuf(stdin,NULL);
 	if(palabras > 0){
 		unsigned int i,j;
 		char *tmp;
@@ -75,9 +75,9 @@ char* SeparateWord(char *string, const char *delim,char **Words,int palabras,int
 	}
 }
 int main(int args, char *argv[]){
-	char Aux[50];
-	printf("[+] Escribe el texto (50 Carateres max.): ");
-	fgets(Aux,255,stdin);
+	char Aux[270];
+	printf("[+] Escribe el texto (255 Carateres max.): ");
+	fgets(Aux,270,stdin);
 	cambio(Aux);
 	unsigned int letras = strlen(Aux);
 	char *Oracion = (char*)malloc(letras*sizeof(char));
@@ -86,11 +86,11 @@ int main(int args, char *argv[]){
 		exit(1);
 	}
 	strcpy(Oracion,Aux);
-	fflush(stdin);
+	setbuf(stdin,NULL);
 	printf("[*] Texto:\t\"%s\"\n[*] Caracteres:\t%d\n",Oracion,letras);
 	unsigned int palabras = WordCount(Oracion);
 	printf("[*] Palabras: %i\n",palabras);
-	fflush(stdin);
+	setbuf(stdin,NULL);
 	char **Words = (char**)malloc(palabras*sizeof(char*));
 	if(Words == NULL){
 		printf("[!] No se ha podido reservar memoria suficiente!\n");
@@ -103,4 +103,5 @@ int main(int args, char *argv[]){
 	}
 	free(Oracion);
 	free(Words);
+	setbuf(stdin,NULL);
 }
