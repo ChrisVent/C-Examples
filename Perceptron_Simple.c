@@ -2,15 +2,14 @@
 #include <stdlib.h>
 int main(int argc, char **argv)
 {
-	float w1_peso,w2_peso,Umbral,defumbral;
-	//int factor;
+	float w1_peso,w2_peso,Umbral,defumbral,factor;
 	int i;
 	int x1[] = {1,1,-1,-1};
 	int x2[] = {1,-1,1,-1};
 	int result[] = {1,-1,-1,-1};
 	w1_peso = 1.2;
 	w2_peso = -1.2;
-	//factor = 0.5;
+	factor = 0.5;
 	Umbral = -0.4;
 	defumbral = -1;
 	int verdad = 0;
@@ -33,9 +32,9 @@ int main(int argc, char **argv)
 			}
 			//printf("\tSalida: %2i --> Patron: %2i\n\n",op,result[i]);
 			if(op != result[i]){
-				w1_peso = w1_peso + (2*0.5)*(x1[i]*result[i]);
-				w2_peso = w2_peso + (2*0.5)*(x2[i]*result[i]);
-				Umbral = Umbral + (2*0.5)*(defumbral*result[i]);
+				w1_peso = w1_peso + (2*factor)*(x1[i]*result[i]);
+				w2_peso = w2_peso + (2*factor)*(x2[i]*result[i]);
+				Umbral = Umbral + (2*factor)*(defumbral*result[i]);
 			}
 		}
 		for(i=0;i<4;i++){
@@ -48,12 +47,17 @@ int main(int argc, char **argv)
 			}
 		}
 	}
+
 /////////// MOSTRAR RESULTADOS FINALES
 	printf("\n\n---------------- VALORES FINALES -----------------\n\n");
 	printf("[*] Total de epocas: (%i)\n",n);
 	printf("[*] Peso Sinaptico 1\t\t--> %2.2f\n",w1_peso);
 	printf("[*] Peso Sinaptico 2\t\t--> %2.2f\n",w2_peso);
 	printf("[*] Umbral\t\t\t--> %2.2f\n",Umbral);
+
+
+
+
 	printf("\n\n------------------------------------\n\n");
 	int ux1,ux2;
 	printf("Escribe el valor para P1 (Entrada 1): ");
