@@ -7,9 +7,9 @@ int main(int argc, char **argv)
 	int x1[] = {1,1,-1,-1};
 	int x2[] = {1,-1,1,-1};
 	int result[] = {1,-1,-1,-1};
-	w1_peso = 1.2;
-	w2_peso = -1.2;
-	factor = 0.5;
+	w1_peso = 1.6;
+	w2_peso = -1.6;
+	factor = 0.3;
 	Umbral = -0.4;
 	defumbral = -1;
 	int verdad = 0;
@@ -46,18 +46,17 @@ int main(int argc, char **argv)
 				verdad = 1;
 			}
 		}
+		if(n > 20){
+			printf("[!] Demasiadas epocas realizadas!");
+			exit(1);
+		}
 	}
-
 /////////// MOSTRAR RESULTADOS FINALES
 	printf("\n\n---------------- VALORES FINALES -----------------\n\n");
 	printf("[*] Total de epocas: (%i)\n",n);
 	printf("[*] Peso Sinaptico 1\t\t--> %2.2f\n",w1_peso);
 	printf("[*] Peso Sinaptico 2\t\t--> %2.2f\n",w2_peso);
 	printf("[*] Umbral\t\t\t--> %2.2f\n",Umbral);
-
-
-
-
 	printf("\n\n------------------------------------\n\n");
 	int ux1,ux2;
 	printf("Escribe el valor para P1 (Entrada 1): ");
