@@ -48,17 +48,12 @@ int main(int argc, char **argv)
 			}
 		}
 	}
-
 /////////// MOSTRAR RESULTADOS FINALES
 	printf("\n\n---------------- VALORES FINALES -----------------\n\n");
 	printf("[*] Total de epocas: (%i)\n",n);
 	printf("[*] Peso Sinaptico 1\t\t--> %2.2f\n",w1_peso);
 	printf("[*] Peso Sinaptico 2\t\t--> %2.2f\n",w2_peso);
 	printf("[*] Umbral\t\t\t--> %2.2f\n",Umbral);
-
-
-
-
 	printf("\n\n------------------------------------\n\n");
 	int ux1,ux2;
 	printf("Escribe el valor para P1 (Entrada 1): ");
