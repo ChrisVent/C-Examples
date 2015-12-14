@@ -1,16 +1,20 @@
 #include <stdio.h>
+#include <time.h>
 #include <stdlib.h>
-int main(int argc, char **argv)
-{
+#include <unistd.h>
+
+void Perceptron(){
+	srand(time(NULL));
+	float intervalos[] = {-0.98,-0.876,-0.654,-0.754,0.453,0.953,-0.322,-0.298,-0.11,-0.065,0.0234,0.232,0.2335,0.4674,0.675,0.7883, 0.752,0.823,0.9876};
 	float w1_peso,w2_peso,Umbral,defumbral,factor;
 	int i;
 	int x1[] = {1,1,-1,-1};
 	int x2[] = {1,-1,1,-1};
 	int result[] = {1,-1,-1,-1};
-	w1_peso = 1.6;
-	w2_peso = -1.6;
-	factor = 0.3;
-	Umbral = -0.4;
+	w1_peso = intervalos[rand() % 18];
+	w2_peso = intervalos[rand() % 18];
+	factor = intervalos[rand() % 18];
+	Umbral = intervalos[rand() % 18];
 	defumbral = -1;
 	int verdad = 0;
 	int op;
@@ -19,7 +23,6 @@ int main(int argc, char **argv)
 //////////// ENTRENAMIENTO DEL PERCEPTRON;
 	while(verdad == 0){
 		n++;
-		system("clear");
 		//printf("--------------------- Epoca %i ----------------------\n\n",n);
 		for(i=0;i<4;i++){
 			//printf("[*] Pesos Sinapticos: %.2f & %.2f -- Umbral: %f\n",w1_peso,w2_peso,Umbral);
@@ -46,30 +49,42 @@ int main(int argc, char **argv)
 				verdad = 1;
 			}
 		}
-		if(n > 20){
-			printf("[!] Demasiadas epocas realizadas!");
+		if(n > 200){
+			printf("[!] Demasiadas epocas realizadas!\n");
+			printf("[!] Intente nuevamente con otros pesos sinapticos.\n");
 			exit(1);
 		}
 	}
 /////////// MOSTRAR RESULTADOS FINALES
-	printf("\n\n---------------- VALORES FINALES -----------------\n\n");
+	system("clear");
+	printf("\n[*] FINALIZANDO ENTRENAMIENTO...\n");
+	printf("[*] PERCEPTRON SIMPLE [ENTRENADO]\n");
+	printf("\n--------------- DATOS FINALES --------------------------------\n\n");
 	printf("[*] Total de epocas: (%i)\n",n);
 	printf("[*] Peso Sinaptico 1\t\t--> %2.2f\n",w1_peso);
 	printf("[*] Peso Sinaptico 2\t\t--> %2.2f\n",w2_peso);
-	printf("[*] Umbral\t\t\t--> %2.2f\n",Umbral);
-	printf("\n\n------------------------------------\n\n");
-	int ux1,ux2;
-	printf("Escribe el valor para P1 (Entrada 1): ");
-	scanf("%i",&ux1);
-	printf("Escribe el valor para P2 (Entrada 2): ");
-	scanf("%i",&ux2);
-	op = ((ux1*w1_peso)+(ux2*w2_peso)) + (defumbral*Umbral);
-	if(op >= 0){
-		op = 1;
+	printf("[*] Umbral(Polarizacion)\t--> %2.2f\n",Umbral);
+	printf("\n\n--------------- VERFICIACION DE ENTRENAMIENTO ------------------\n\n");
+	for(i=0;i<4;i++){
+		op = ((x1[i]*w1_peso)+(x2[i]*w2_peso)) + (defumbral*Umbral);
+		if(op >= 0){
+			op = 1;
+		}
+		else{
+			op = -1;
+			}
+		printf("\n[*] Entradas: (%2i,%2i) --> Salida: %2i",x1[i],x2[i],op);
+		if(op != result[i]){
+			system("clear");
+			printf("\n[!] Demasiadas epocas realizadas!\n");
+			printf("[!] Intente nuevamente con otros pesos sinapticos.\n");
+			exit(1);
+			Perceptron();
+			}
 	}
-	else{
-		op = -1;
-	}
-	printf("Salida --> %i \n",op);
+}
+int main(int argc, char **argv)
+{
+	Perceptron();
 	return 0;
 }
