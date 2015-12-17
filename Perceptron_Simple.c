@@ -6,13 +6,14 @@
 void Perceptron(){
 	srand(time(NULL));
 	float intervalos[] = {-0.98,-0.876,-0.654,-0.754,0.453,0.953,-0.322,-0.298,-0.11,-0.065,0.0234,0.232,0.2335,0.4674,0.675,0.7883, 0.752,0.823,0.9876};
-	float Umbral,defumbral,factor;
+	float aprendizaje[] = {0.0234,0.232,0.2335,0.4674,0.675,0.7883, 0.752,0.823,0.9876};
+	float Umbral,defumbral;
 	int i;
 	int x1[] = {1,1,-1,-1};
 	int x2[] = {1,-1,1,-1};
 	int result[] = {1,-1,-1,-1};
 	float w[2] = {intervalos[rand() % 18],intervalos[rand() % 18]};
-	factor = intervalos[rand() % 18];
+	float alpha = aprendizaje[rand() % 9];
 	Umbral = intervalos[rand() % 18];
 	defumbral = 1;
 	int verdad = 0;
@@ -31,9 +32,9 @@ void Perceptron(){
 				op = -1;
 			}
 			if(op != result[i]){
-				w[0] = w[0] + (2*factor)*(x1[i]*result[i]);
-				w[1] = w[1] + (2*factor)*(x2[i]*result[i]);
-				Umbral = Umbral + (2*factor)*(defumbral*result[i]);
+				w[0] = w[0] + (2*alpha)*(x1[i]*result[i]);
+				w[1] = w[1] + (2*alpha)*(x2[i]*result[i]);
+				Umbral = Umbral + (2*alpha)*(defumbral*result[i]);
 			}
 		}
 		for(i=0;i<4;i++){
