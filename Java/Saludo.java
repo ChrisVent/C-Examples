@@ -15,7 +15,9 @@ public class Saludo {
 		 * ya puede saludar
 		 */
 	}
-
+	// con synchronized creamos una funcion restringida para el uso de Threads, quiere decir que si un hilo esta
+	// utilizando una funcion symchronized, solo este tendra acceso a la instancia del olbjeto, y los demas hilos
+	// dormiran hasta que se desocupe el metodo
 	public synchronized void saludoEmpleado(String Nombre){
 		try{
 			wait();
@@ -30,7 +32,9 @@ public class Saludo {
 	
 	//Si es jefe, saluda y luego avisa a los empledos para que saluden
 	// El notifyAll() despierta todos los hilos que estan bloqueados (por wait() )
-	
+	// con synchronized creamos una funcion restringida para el uso de Threads, quiere decir que si un hilo esta
+	// utilizando una funcion symchronized, solo este tendra acceso a la instancia del olbjeto, y los demas hilos
+	// dormiran hasta que se desocupe el metodo
 	public synchronized void saludoJefe(String Nombre){
 		System.out.println("\n***** " + Nombre + ": Buenos dias, Empleados. *****");
 		notifyAll();
