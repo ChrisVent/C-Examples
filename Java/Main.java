@@ -2,6 +2,9 @@ package App;
 public class Main {
 
 	public static void main(String[] args) {
+		
+		
+		/////////////////// CLASE PERSONA ///////////////////////////
 		/*Persona Me = new Persona("Christopher");
 		Me.Saludar();
 		System.out.println(Me.GetNombre());
@@ -11,6 +14,12 @@ public class Main {
 		Me.Saludar();
 		Me.Despedirse();
 		*/
+		
+		
+		
+		
+		
+		//////////// CLASE HILO /////////////////////////////
 		/*
 		//int MIN_PRIORY = 1;
 		int NORM_PRIORY = 5;
@@ -22,11 +31,20 @@ public class Main {
 		Hilo1.start();
 		Hilo2.start();
 		*/
+		
+		
+		
+		
+		/////////////// CLASE FILES //////////////////////////
 		/*
 		Files f = new Files();
 		f.Escribir("archivo.txt","Hola Mundo");
 		f.Leer("archivo.txt");
 		*/
+		
+		
+		//////////// CLASES VERIFICARCUENTA Y CUENTABANCO ////////////////// 
+		
 		/*
 		VerificarCuenta vc = new VerificarCuenta();
 		Thread Luis = new Thread(vc,"Luis");
@@ -35,6 +53,11 @@ public class Main {
 		Manuel.start();
 		*/
 		
+		
+		
+
+		
+		/////////// CLASES SALUDO Y PERSONAL //////////////////// 
 		
 		/*
 		// 		objeto en comun, se encarga del wait y notify
