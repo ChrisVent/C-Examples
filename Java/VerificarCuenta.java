@@ -3,9 +3,9 @@ import java.util.logging.*; // libreria para los errores y logs
 
 public class VerificarCuenta implements Runnable {
 	private CuentaBanco cb = new CuentaBanco();
-	// synchronized es para que al ejecutar los hilos al mismo tiempo y acceder a la misma variable, esten sincronizados
-	// y privados para que si ambos acceden a la misma funcion un objeto sepa el valor de la variable del otro objeto
-	//
+	// con synchronized creamos una funcion restringida para el uso de Threads, quiere decir que si un hilo esta
+	// utilizando una funcion symchronized, solo este tendra acceso a la instancia del olbjeto, y los demas hilos
+	// dormiran hasta que se desocupe el metodo
 	private synchronized void HacerRetiro(int cantidad) throws InterruptedException{
 		// si la cantidad a retirar es menor que lo que tenemos en fondo
 		if(cb.getBalance() >= cantidad){
